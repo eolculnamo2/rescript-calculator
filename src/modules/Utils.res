@@ -13,13 +13,9 @@ let insertAtIndex = (arr, index, item) => {
     newArr
   }
   let getAndRemove = (arr: array<'a>, index) => {
-    let value = arr -> Belt.Array.get(index) 
-    switch value {
-     | None => None
-      | Some(v) => {
-        let filtered_arr = arr -> Js.Array2.filteri((_, i) => i != index)
-        Some((v, filtered_arr))
-      }
-    }
+    let value = arr -> Belt.Array.get(index) -> Belt.Option.map((v) => {
+      let filtered_arr = arr -> Js.Array2.filteri((_, i) => i != index)
+      Some((v, filtered_arr))
+    })
   }
 } 
